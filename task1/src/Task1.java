@@ -17,7 +17,7 @@ public class Task1 {
            }
        } else if (args.length == 3) {
            Matcher matcher;
-           for(int i = 0; i < args.length; i++){
+           for(int i = 1; i < args.length; i++){
                matcher = decimalPattern.matcher(args[i]);
                if (!matcher.find()) {
                    break;
@@ -68,7 +68,6 @@ public class Task1 {
             result = result + "" + num;
         }
         result = new StringBuffer(result).reverse().toString();
-        System.out.println(result);
         return result;
     }
 
@@ -86,7 +85,13 @@ public class Task1 {
 
         int numInTenBase = 0;
         for (int i = 0; i < nb.length(); i++) {
-            numInTenBase += Integer.parseInt(String.valueOf(nb.charAt(i))) * Math.pow(srcNumBase, (nb.length() - i - 1));
+            if (srcBase.equals("16") && nb.charAt(i) >= 65 && nb.charAt(i) <= 70) {
+                char numS = (char)Integer.parseInt(String.valueOf(nb.charAt(i) - 17));
+                int num = Integer.parseInt(String.valueOf(numS)) + 10;
+                numInTenBase += num * Math.pow(srcNumBase, (nb.length() - i - 1));
+            } else {
+                numInTenBase += Integer.parseInt(String.valueOf(nb.charAt(i))) * Math.pow(srcNumBase, (nb.length() - i - 1));
+            }
         }
 
         System.out.println(numInTenBase);
