@@ -60,7 +60,7 @@ public class Parser {
                 Double.parseDouble(array[1]),
                 Double.parseDouble(array[2]));
 
-        pattern = Pattern.compile("radius.++");
+        pattern = Pattern.compile("radius:([\\s\\S]+?),");
         matcher = pattern.matcher(atrs);
 
         matcher.find();
